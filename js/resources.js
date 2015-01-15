@@ -27,9 +27,9 @@
              * assume the value is a string and call our image loader
              * directly.
              */
-            _load(urlOrArr);
+             _load(urlOrArr);
         }
-    }
+   }
 
     /* This is our private image loader function, it is
      * called by the public image loader function.
