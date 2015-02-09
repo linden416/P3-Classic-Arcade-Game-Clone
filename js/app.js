@@ -19,7 +19,7 @@ var position = {
 var Enemy = function(rowStart, colStart, speed, rowJumper) {
     // The image/sprite for our enemies
     this.sprite = 'images/enemy-bug.png';
-    
+
     this.speedFactor = 3; //Set the default speed factor
     if (speed === 'fast')
         this.speedFactor = 6;  //Fast factor
@@ -46,11 +46,11 @@ Enemy.prototype.update = function(dt) {
                                         //by the speedFactor property to alter speeds
     //The halt action setting is by default set to false.
     //It is true when the player makes it across successfully or if
-    //the player is overcome by the enemy. The halt is for short 4 secs.  
-    if (bHALT_Action === false) {         
-       
+    //the player is overcome by the enemy. The halt is for short 4 secs.
+    if (bHALT_Action === false) {
+
        this.x += speed * dt;
- 
+
         if (this.x > (COL_WIDTH * 5)) {  //Image is off the canvas
             this.x = -50;  //Reposition image to enter canvas again from the left
             if (this.rowJumper === true) {
@@ -166,17 +166,16 @@ Player.prototype.handleInput = function(pressedKey) {
 Player.prototype.checkCollisions = function() {
    if (bHALT_Action === false){
 
-//        for(enemy in allEnemies)  //Traverse all active enemy objects
         for(enemy = 0; enemy < allEnemies.length; enemy++) //Traverse all active enemy objects
         {
             //check for enemy and player grid cell match
             if ( allEnemies[enemy].row === player.row  &&
                  allEnemies[enemy].col === player.col) {
-            
-                //Collision has occurred, pause entities briefly before reinitializing    
+
+                //Collision has occurred, pause entities briefly before reinitializing
                 bHALT_Action = true; //pause action to show enemy hit.
                 player.sprite = 'images/dead-boy.png'; //Change the player sprite to reflect enemy hit
-            
+
                 setTimeout(this.reset, 2000); //Call reset function after 2 secs
 
                 break; //collision found, no need to check any further, get out of for loop
@@ -190,7 +189,7 @@ Player.prototype.checkCollisions = function() {
 Player.prototype.reset = function() {
     bHALT_Action = false;
     player.sprite = 'images/char-boy.png'; //default sprite
-    player.initPosition(); //Reset the player to start position 
+    player.initPosition(); //Reset the player to start position
     clearTimeout();
 };
 
